@@ -1,3 +1,6 @@
+###> trash ###
+.idea/*.xml
+###< trash ###
 
 ###> symfony/framework-bundle ###
 /.env.local
