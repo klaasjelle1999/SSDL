@@ -90,7 +90,6 @@
     text-align: center;
     background: #225f45;
     display: table;
-    position: absolute;
 }
 
 .footer h1 {
@@ -101,6 +100,10 @@
 
 .card-title {
     font-family: europa-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.about-us-logo {
+    padding-top: 15%;
 }
 
 body {
