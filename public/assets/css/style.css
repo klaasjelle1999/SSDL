@@ -82,6 +82,26 @@
     height: auto;
 }
 
+.vertical-align-text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 30%;
+    margin: auto;
+}
+
+.sponsor-image-sponsorpage {
+    position: relative;
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
 .footer {
     left: 0;
     bottom: 0;

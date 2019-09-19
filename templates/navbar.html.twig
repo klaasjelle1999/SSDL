@@ -53,7 +53,7 @@
                         <a href="{{ path('about') }}" class="nav-link {% if app.request.attributes.get('_route') == "about" %}active{% endif %}"><i class="fa fa-address-card"></i> Over ons</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="fas fa-hand-holding-usd"></i> Sponsoren</a>
+                        <a href="{{ path('sponsor') }}" class="nav-link {% if app.request.attributes.get('_route') == "sponsor" %}active{% endif %}"><i class="fas fa-hand-holding-usd"></i> Sponsoren</a>
                     </li>
                 </ul>
             </div>
