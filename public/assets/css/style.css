@@ -1,0 +1,150 @@
+.course-header-image{
+    border-bottom-left-radius: 100% 25%;
+    border-bottom-right-radius: 100% 25%;
+    border-bottom: none;
+    height: 150px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
+
+@font-face {
+    font-family: 'europa-boldbold';
+    src: url('../fonts/europa/europabold.woff2') format('woff2'),
+    url('../fonts/europa/europabold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'europa-lightlight';
+    src: url('../fonts/europa/europalight.woff2') format('woff2'),
+    url('../fonts/europa/europalight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'europa-regularregular';
+    src: url('../fonts/europa/europaregular.woff2') format('woff2'),
+    url('../fonts/europa/europaregular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.blink {
+    animation: blink 1s step-start 0s infinite;
+    -webkit-animation: blink 1s step-start 0s infinite;
+}
+
+.button {
+    color: white;
+    border: 0px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 50px #CCCCCC;
+    font-family: europa-boldbold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 900;
+    /*border-color: rgba(255, 165, 36, 100);*/
+}
+
+.button:hover {
+    color: white;
+    border: 0px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px #CCCCCC;
+    font-family: europa-boldbold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 900;
+    /*border-color: rgba(255, 165, 36, 100);*/
+}
+
+.button:active {
+    color: white;
+    border: 3px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px #CCCCCC;
+    font-family: europa-boldbold, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 900;
+    /*border-color: rgba(255, 165, 36, 100);*/
+}
+
+.sponsor-image-homepage {
+    max-width: 75%;
+    height: auto;
+}
+
+.vertical-align-text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 30%;
+    margin: auto;
+}
+
+.sponsor-image-sponsorpage {
+    position: relative;
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    background: #225f45;
+    display: table;
+}
+
+.footer h1 {
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.card-title {
+    font-family: europa-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.about-us-logo {
+    padding-top: 15%;
+}
+
+body {
+    font-family: europa-regular, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.formHomepage input, .formHomepage select, form textarea {
+    -webkit-appearance: none;
+    background: 0 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: auto;
+    min-width: 20px;
+    color: #B3B3B3;
+}
+
+.formHomepage textarea {
+    max-width: 100%;
+    min-width: 100%;
+    vertical-align: top;
+    text-indent: 80px;
+    resize: none;
+}
