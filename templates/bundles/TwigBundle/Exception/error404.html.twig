@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}SSDL{% endblock %}</title>
+    <title>{% block title %}Oops{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/header-brand-logo.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/tabler.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <script src="/assets/js/vendors/jquery.min.js"></script>
     <script src="/assets/js/vendors/bootstrap.min.js"></script>
     <script src="/assets/js/tabler.js"></script>
@@ -22,24 +22,20 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css"/>
     {% block stylesheets %}{% endblock %}
 </head>
-<body>
+<body class>
 <div class="page">
-    <div class="page-main">
-        {% include 'navbar.html.twig' %}
-        <div class="col-12">
-            <div class="container">
-                {% block body %}{% endblock %}
+    <div class="page-content">
+        <div class="container text-center">
+            <div class="display-1 text-muted mb-5">
+                404
             </div>
+            <h1 class="h2 mb-3">
+                Oops... U hebt een error pagina gevonden..
+            </h1>
+            <p class="h-4 text-muted font-weight-normal mb-7">Het spijt ons, maar deze pagina blijkt niet te bestaan.</p>
+            <a href="javascript:history.back()" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Ga terug</a>
         </div>
     </div>
 </div>
-<div class="footer">
-    <div class="container">
-        <div class="row col-4">
-            <h1>SSDL</h1>
-        </div>
-    </div>
-</div>
-{% block javascripts %}{% endblock %}
 </body>
 </html>
