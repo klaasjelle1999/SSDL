@@ -51,6 +51,11 @@
                     <li class="nav-item">
                         <a href="{{ path('sponsor') }}" class="nav-link {% if app.request.attributes.get('_route') == "sponsor" %}active{% endif %}"><i class="fas fa-hand-holding-usd"></i> Sponsoren</a>
                     </li>
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a href="{{ path('extra_information') }}" class="nav-link {% if app.request.get('_route') == "extra_information" %}active{% endif %}"><i class="fa fa-plus"></i> Extra informatie</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
