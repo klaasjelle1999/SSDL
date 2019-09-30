@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ExtraInformationController extends AbstractController
@@ -18,7 +17,7 @@ class ExtraInformationController extends AbstractController
                 'controller_name' => 'ExtraInformationController',
             ]);
         } else {
-            return new Response($this->renderView('/bundles/TwigBundle/Exception/error403.html.twig'));
+            return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
         }
     }
 }
