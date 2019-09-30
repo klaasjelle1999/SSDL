@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1 class="page-title">Beheer</h1>
+        <div class="page-options d-flex">
+            <a href="#" class="btn btn-secondary"><i class="fa fa-user"></i> Gebruiker aanmaken</a>
+            <a href="#" class="btn btn-secondary"><i class="fa fa-sticky-note"></i> Pagina aanmaken</a>
+        </div>
+    </div>
+    <div class="row row-cards row-deck">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <input type="search" id="searchUsersInput" onkeyup="searchUsers()" class="form-control col-3"
+                           placeholder="Zoeken op naam">
+                </div>
+                <div class="table-responsive">
+                    <table id="filterTable"
+                           class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                        <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Email</th>
+                            <th>Geslacht</th>
+                            <th>Geboorte datum</th>
+                            <th>Aangemaakt op</th>
+                            <th class="w-3">Acties</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in userPagination %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.gender }}</td>
+                                <td>{{ user.dateOfBirth|date('d-m-Y') }}</td>
+                                <td>{{ user.createdAt|date('d-m-Y H:m') }}</td>
+                                <td class="w-3">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    {{ knp_pagination_render(userPagination) }}
+                </div>
+            </div>
+            <div class="card">
+                <div class="table-responsive">
+                    <table id="filterTable"
+                           class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                        <thead>
+                        <tr>
+                            <th>Pagina naam</th>
+                            <th>Zichtbaar voor</th>
+                            <th>Aangemaakt op</th>
+                            <th class="w-3">Acties</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for page in pagePagination %}
+                            <tr>
+                                <td>{{ page.name }}</td>
+                                <td>{{ page.visibleTo }}</td>
+                                <td>{{ page.createdAt }}</td>
+                                <td class="w-3">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                                    class="fa fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    {{ knp_pagination_render(userPagination) }}
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function searchUsers() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchUsersInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("filterTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+{% endblock %}
+

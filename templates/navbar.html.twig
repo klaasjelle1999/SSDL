@@ -43,18 +43,23 @@
             <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                     <li class="nav-item">
-                        <a href="{{ path('homepage') }}" class="nav-link {% if app.request.attributes.get('_route') == "homepage" %}active{% endif %}"><i class="fa fa-home"></i> Home</a>
+                        <a href="{{ path('homepage') }}" class="nav-link {% if app.request.attributes.get('_route') == "homepage" %}active{% endif %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('about') }}" class="nav-link {% if app.request.attributes.get('_route') == "about" %}active{% endif %}"><i class="fa fa-address-card"></i> Over ons</a>
+                        <a href="{{ path('about') }}" class="nav-link {% if app.request.attributes.get('_route') == "about" %}active{% endif %}">Over ons</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('sponsor') }}" class="nav-link {% if app.request.attributes.get('_route') == "sponsor" %}active{% endif %}"><i class="fas fa-hand-holding-usd"></i> Sponsoren</a>
+                        <a href="{{ path('sponsor') }}" class="nav-link {% if app.request.attributes.get('_route') == "sponsor" %}active{% endif %}">Sponsoren</a>
                     </li>
                     {% if app.user %}
                         <li class="nav-item">
-                            <a href="{{ path('extra_information') }}" class="nav-link {% if app.request.get('_route') == "extra_information" %}active{% endif %}"><i class="fa fa-plus"></i> Extra informatie</a>
+                            <a href="{{ path('extra_information') }}" class="nav-link {% if app.request.get('_route') == "extra_information" %}active{% endif %}">Extra informatie</a>
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a href="{{ path('admin') }}" class="nav-link {% if app.request.get('_route') == "admin" %}active{% endif %}">Beheer</a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>
