@@ -19,6 +19,16 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
+    public function findHomepage($name)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Page[] Returns an array of Page objects
     //  */

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="page-header">
+        <h1 class="page-title">
+            Gebruiker <span class="text-muted">{{ user.email }}</span> bewerken
+        </h1>
+        <div class="page-options">
+            <a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-arrow-left"></i> Go Back</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(updateForm) }}
+            <div class="form-group">
+                <label class="form-label-sm">Email:</label>
+                {{ form_row(updateForm.email, {'value': user.email}) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Rol:</label>
+                {{ form_row(updateForm.roles, {'value': user.roles}) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Naam:</label>
+                {{ form_row(updateForm.name, {'value': user.name}) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Geslacht:</label>
+                {{ form_row(updateForm.gender, {'value': user.gender}) }}
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Verzenden</button>
+            </div>
+            {{ form_end(updateForm) }}
+        </div>
+    </div>
+{% endblock %}
