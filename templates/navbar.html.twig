@@ -54,14 +54,14 @@
                                 </li>
                             {% endif %}
                         {% endfor %}
-                        {% else %}
-                            {% for page in pages %}
-                                {% if page.visibleTo == 'anyone' %}
-                                    <li class="nav-item">
-                                        <a href="/{{ page.name }}/page" class="nav-link">{{ page.name }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
+                    {% else %}
+                        {% for page in pages %}
+                            {% if page.visibleTo == 'anyone' %}
+                                <li class="nav-item">
+                                    <a href="/{{ page.name }}/page" class="nav-link">{{ page.name }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
                     {% endif %}
                     {% if app.user %}
                         {% if is_granted('ROLE_ADMIN') %}
