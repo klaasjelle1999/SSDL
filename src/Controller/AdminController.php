@@ -28,16 +28,21 @@ class AdminController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
-        $users = $this->em->getRepository(User::class)->findAll();
-        $userPagination = $paginator->paginate($users, $request->query->getInt('page', 1), 10);
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
+        } else {
+            $users = $this->em->getRepository(User::class)->findAll();
+            $userPagination = $paginator->paginate($users, $request->query->getInt('page', 1), 10);
 
-        $pages = $this->em->getRepository(Page::class)->findAll();
-        $pagePagination = $paginator->paginate($pages, $request->query->getInt('page', 1, 10));
+            $pages = $this->em->getRepository(Page::class)->findAll();
+            $pagePagination = $paginator->paginate($pages, $request->query->getInt('page', 1, 10));
 
-        return $this->render('admin/index.html.twig', [
-            'userPagination' => $userPagination,
-            'pagePagination' => $pagePagination,
-            'controller_name' => 'AdminController',
-        ]);
+            return $this->render('admin/index.html.twig', [
+                'pages' => $pages,
+                'userPagination' => $userPagination,
+                'pagePagination' => $pagePagination,
+                'controller_name' => 'AdminController',
+            ]);
+        }
     }
 }

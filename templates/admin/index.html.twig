@@ -6,10 +6,21 @@
     <div class="page-header">
         <h1 class="page-title">Beheer</h1>
         <div class="page-options d-flex">
-            <a href="#" class="btn btn-secondary"><i class="fa fa-user"></i> Gebruiker aanmaken</a>
-            <a href="#" class="btn btn-secondary"><i class="fa fa-sticky-note"></i> Pagina aanmaken</a>
+            <a href="{{ path('create_user') }}" class="btn btn-secondary"><i class="fa fa-user"></i> Gebruiker aanmaken</a>
+            <a href="{{ path('create_page') }}" class="btn btn-secondary"><i class="fa fa-sticky-note"></i> Pagina
+                aanmaken</a>
         </div>
     </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="row row-cards row-deck">
         <div class="col-12">
             <div class="card">
@@ -25,7 +36,7 @@
                             <th>Naam</th>
                             <th>Email</th>
                             <th>Geslacht</th>
-                            <th>Geboorte datum</th>
+                            <th>Rol</th>
                             <th>Aangemaakt op</th>
                             <th class="w-3">Acties</th>
                         </tr>
@@ -36,14 +47,26 @@
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.gender }}</td>
-                                <td>{{ user.dateOfBirth|date('d-m-Y') }}</td>
-                                <td>{{ user.createdAt|date('d-m-Y H:m') }}</td>
+                                <td>
+                                    {% if user.role == 'ROLE_ADMIN' %}
+                                        Beheerder
+                                    {% elseif user.role == 'ROLE_USER' %}
+                                        Lid
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
                                 <td class="w-3">
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-sm btn-outline-info"><i
-                                                    class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                    <a href="{{ path('update_user', {'user': user.email}) }}" type="button"
+                                       class="btn btn-sm btn-outline-info"><i
+                                                class="fa fa-edit"></i></a>
+                                    <div class="dropdown">
+                                        <button id="{{ user.id }}" data-toggle="dropdown" type="button"
+                                                class="btn btn-sm btn-outline-danger"><i
                                                     class="fa fa-trash"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ path('delete_user', {'user': user.id}) }}"
+                                               class="dropdown-item text-red text-uppercase">Weet u zeker dat u deze gebruiker wilt verwijderen?</a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -71,14 +94,26 @@
                         {% for page in pagePagination %}
                             <tr>
                                 <td>{{ page.name }}</td>
-                                <td>{{ page.visibleTo }}</td>
-                                <td>{{ page.createdAt }}</td>
+                                <td>
+                                    {% if page.visibleTo == 'anyone' %}
+                                        Iedereen
+                                    {% elseif page.visibleTo == 'member' %}
+                                        Lid
+                                    {% elseif page.visibelTo == 'admin' %}
+                                        Beheerder
+                                    {% endif %}
+                                </td>
+                                <td>{{ page.createdAt|date('d-m-Y H:i') }}</td>
                                 <td class="w-3">
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-sm btn-outline-info"><i
-                                                    class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-info"><i
+                                    <a href="{{ path('update_page', {'page': page.id}) }}" type="button" class="btn btn-sm btn-outline-info"><i
+                                                class="fa fa-edit"></i></a>
+                                    <div class="dropdown">
+                                        <button data-toggle="dropdown" type="button"
+                                                class="btn btn-sm btn-outline-danger"><i
                                                     class="fa fa-trash"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ path('delete_page', {'page': page.id}) }}" class="dropdown-item text-uppercase text-red">Weet u zeker dat u deze pagina wilt verwijderen?</a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -91,7 +126,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 {% endblock %}
 

@@ -46,11 +46,6 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateOfBirth;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
     private $createdAt;
 
     public function getId(): ?int
@@ -97,6 +92,14 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRole()
+    {
+        return count($this->roles) ? $this->roles[0] : null;
     }
 
     /**
@@ -151,18 +154,6 @@ class User implements UserInterface
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getDateOfBirth(): ?\DateTimeInterface
-    {
-        return $this->dateOfBirth;
-    }
-
-    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
-    {
-        $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }

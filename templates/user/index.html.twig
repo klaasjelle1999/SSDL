@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1 class="page-title">Gebruiker aanmaken</h1>
+        <div class="page-options">
+            <a class="btn btn-secondary" href="{{ path('admin') }}"><i class="fa fa-arrow-left"></i> Ga terug</a>
+        </div>
+    </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(userForm) }}
+            <div class="form-group">
+                <label class="form-label-sm">Email:</label>
+                {{ form_row(userForm.email) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Rol:</label>
+                {{ form_row(userForm.roles) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Wachtwoord:</label>
+                {{ form_row(userForm.password.first) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Bevestig wachtwoord:</label>
+                {{ form_row(userForm.password.second) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Naam:</label>
+                {{ form_row(userForm.name) }}
+            </div>
+            <div class="form-group">
+                <label class="form-label-sm">Geslacht:</label>
+                {{ form_row(userForm.gender) }}
+            </div>
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Verzenden</button>
+            </div>
+            {{ form_end(userForm) }}
+        </div>
+    </div>
+{% endblock %}
