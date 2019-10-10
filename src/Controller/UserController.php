@@ -35,11 +35,18 @@ class UserController extends AbstractController
     public function create(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $pages = $this->getDoctrine()->getRepository(Page::class)->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         $userForm = $this->createForm(UserCreateFormType::class);
         $userForm->handleRequest($request);
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             $data = $userForm->getData();
+            foreach ($users as $user) {
+                if ($data->email === $user->getEmail()) {
+                    $this->addFlash('danger', 'Er bestaat al een gebruiker met deze email');
+                    return $this->redirectToRoute('admin');
+                }
+            }
             $user = new User;
             $password = $encoder->encodePassword($user, $data->password);
             $this->manager->createUser($data, $password, $user);
@@ -63,6 +70,10 @@ class UserController extends AbstractController
     public function delete(User $user)
     {
         if ($this->isGranted('ROLE_ADMIN')) {
+            if ($user === $this->getUser()) {
+                $this->addFlash('danger', 'U kan uzelf niet verwijderen');
+                return $this->redirectToRoute('admin');
+            }
             $this->manager->deleteUser($user);
             $this->addFlash('danger', 'De gebruiker is met success verwijderd!');
             return $this->redirectToRoute('admin');

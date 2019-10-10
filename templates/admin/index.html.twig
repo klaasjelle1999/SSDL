@@ -65,8 +65,7 @@
                                                     class="fa fa-trash"></i></button>
                                         <div class="dropdown-menu">
                                             <a href="{{ path('delete_user', {'user': user.id}) }}"
-                                               class="dropdown-item text-red text-uppercase">Verwijder deze
-                                                gebruiker!</a>
+                                               class="dropdown-item text-red text-uppercase">Weet u zeker dat u deze gebruiker wilt verwijderen?</a>
                                         </div>
                                     </div>
                                 </td>
@@ -113,8 +112,7 @@
                                                 class="btn btn-sm btn-outline-danger"><i
                                                     class="fa fa-trash"></i></button>
                                         <div class="dropdown-menu">
-                                            <a href="{{ path('delete_page', {'page': page.id}) }}" class="dropdown-item text-uppercase text-red">De pagina
-                                                verwijderen</a>
+                                            <a href="{{ path('delete_page', {'page': page.id}) }}" class="dropdown-item text-uppercase text-red">Weet u zeker dat u deze pagina wilt verwijderen?</a>
                                         </div>
                                     </div>
                                 </td>
