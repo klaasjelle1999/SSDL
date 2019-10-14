@@ -48,6 +48,11 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ForgottenPassword", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $forgottenPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,6 +171,23 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getForgottenPassword(): ?ForgottenPassword
+    {
+        return $this->forgottenPassword;
+    }
+
+    public function setForgottenPassword(ForgottenPassword $forgottenPassword): self
+    {
+        $this->forgottenPassword = $forgottenPassword;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $forgottenPassword->getUser()) {
+            $forgottenPassword->setUser($this);
+        }
 
         return $this;
     }

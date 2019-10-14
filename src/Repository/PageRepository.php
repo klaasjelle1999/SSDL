@@ -25,7 +25,7 @@ class PageRepository extends ServiceEntityRepository
             ->andWhere('p.name = :name')
             ->setParameter('name', $name)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
 

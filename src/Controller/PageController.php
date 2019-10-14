@@ -16,6 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
+     * @Route(path="/")
+     */
+    public function home()
+    {
+        $page = $this->getDoctrine()->getRepository(Page::class)->findHomepage('Home');
+        return $this->redirectToRoute('page', [
+            'page' => $page->getName(),
+        ]);
+    }
+
+    /**
      * @Route("/{page}/page", name="page")
      * @param Page $page
      * @ParamConverter("page", options={"mapping": {"page": "name"}})

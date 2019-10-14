@@ -6,6 +6,16 @@
     <div class="page-header">
         <h1 class="page-title">Log in</h1>
     </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="card">
         <form method="post">
             <div class="card-body">
@@ -23,6 +33,7 @@
                 <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
                 >
+                <a href="{{ path('forgotten_password') }}">Forgot password?</a>
             </div>
             <div class="card-footer text-right">
                 <button class="btn btn-lg btn-primary" type="submit">
